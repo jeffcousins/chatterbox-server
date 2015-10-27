@@ -5,7 +5,8 @@ $(function() {
   app = {
 //TODO: The current 'addFriend' function just adds the class 'friend'
 //to all messages sent by the user
-    server: 'https://api.parse.com/1/classes/chatterbox/',
+    // server: 'https://api.parse.com/1/classes/chatterbox',
+    server: 'http://127.0.0.1:3000/classes/chatterbox',
     username: 'anonymous',
     roomname: 'lobby',
     lastMessageId: 0,
@@ -46,6 +47,7 @@ $(function() {
         data: JSON.stringify(data),
         contentType: 'application/json',
         success: function (data) {
+          console.log('data: ' + data);
           console.log('chatterbox: Message sent');
           // Trigger a fetch to update the messages, pass true to animate
           app.fetch();
@@ -85,6 +87,7 @@ $(function() {
         },
         error: function(data) {
           console.error('chatterbox: Failed to fetch messages');
+          console.log(data);
         }
       });
     },
@@ -222,7 +225,7 @@ $(function() {
     },
     startSpinner: function(){
       $('.spinner img').show();
-      $('form input[type=submit]').attr('disabled', "true");
+//      $('form input[type=submit]').attr('disabled', "true");
     },
 
     stopSpinner: function(){
